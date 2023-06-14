@@ -4,8 +4,9 @@ const BoxForm = ({boxes, setBoxes}) => {
     const [color, setColor] = useState("");
     const formHandler = (e) => {
         e.preventDefault();
-        const newBox = {color: color, height: "100px", width: "100px", display: "inline-block"};
+        const newBox = {color: color, height: "100px", width: "100px", display: "flex", margin: "10px"};
         setBoxes([...boxes, newBox]);
+        setColor("");
     };
     return (
         <form onSubmit={ formHandler }>

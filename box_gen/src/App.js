@@ -4,7 +4,7 @@ import BoxForm from './components/BoxForm';
 import DisplayBox from './components/DisplayBox';
 
 function App() {
-  const [boxes, setBoxes] = useState([{color:"red", height:100, width: 100, display:"inline-block"}]);
+  const [boxes, setBoxes] = useState([{color:"red", height:100, width: 100, display:"flex", margin: 10}]);
   console.log("is this working")
   return (
     <div className="App">
