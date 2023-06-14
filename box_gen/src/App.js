@@ -1,12 +1,15 @@
 import './App.css';
-import BoxForm from './components/BoxForm.js';
-import DisplayBox from './components/DisplayBox.js';
+import {useState} from 'react';
+import BoxForm from './components/BoxForm';
+import DisplayBox from './components/DisplayBox';
 
 function App() {
+  const [boxes, setBoxes] = useState([{color:"red", height:100, width: 100, display:"inline-block"}]);
+  console.log("is this working")
   return (
-    <div>
-      <BoxForm />
-      <DisplayBox />
+    <div className="App">
+      <DisplayBox boxes={boxes} />
+      <BoxForm boxes={boxes} setBoxes={setBoxes} />
     </div>
   );
 }

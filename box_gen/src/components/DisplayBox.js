@@ -1,6 +1,7 @@
 import React from 'react';
 
 const DisplayBox = ({boxes}) => {
+    console.log("are you reaching this component?")
     return (
         <div>
             {boxes.map( (box, index) => {
