@@ -10,10 +10,10 @@ const ToDoList = ({tasks, setTasks}) => {
         setTasks([...tasks, newTask]);
         setTask("");
     }
-    // const strikeOut = (e) => {
-    //     e.preventDefault();
-    //     setTask(strike());
-    // }
+    const strikeOut = (e) => {
+        e.preventDefault();
+        setCompleted(true);
+    }
     return (
         <div>
             <form onSubmit={ formHandler }>
@@ -26,7 +26,7 @@ const ToDoList = ({tasks, setTasks}) => {
                     return (
                         <div>
                             <li key={index}>{task.task}</li>
-                            <input type="checkbox" key={index} />
+                            <input type="checkbox" key={index} value={task.completed} onChange={strikeOut} />
                             <button>Delete</button>
                         </div>
                     )
