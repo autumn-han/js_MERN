@@ -12,16 +12,16 @@ const ToDoList = ({tasks, setTasks}) => {
     }
     const checkTask = (e, idx) => {
         const updatedTasks = tasks.map((task, i) => {
-            if (idx === i) {
+            if(idx === i) {
                 task.completed = !task.completed;
             }
             return task;
         })
         setTasks(updatedTasks);
     }
-    const deleteTask = (delIdx) => {
+    const deleteTask = (e, delIndex) => {
         const filteredTasks = tasks.filter((task, index) => {
-            return delIdx !== index;
+            return index !== delIndex;
         });
         setTasks(filteredTasks);
     }
@@ -42,7 +42,7 @@ const ToDoList = ({tasks, setTasks}) => {
                         <div>
                             <li className={taskClasses.join("")} key={index}>{task.task}</li>
                             <input type="checkbox" checked={task.completed} onChange={ (e) => checkTask(e, index)} />
-                            <button>Delete</button>
+                            <button onClick={ (e) => deleteTask(e, index)}>Delete</button>
                         </div>
                     )
                 })}
