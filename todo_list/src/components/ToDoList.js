@@ -3,12 +3,17 @@ import React, {useState} from 'react';
 const ToDoList = ({tasks, setTasks}) => {
     console.log("are you reaching me?")
     const [task, setTask] = useState("");
+    const [completed, setCompleted] = useState(false)
     const formHandler = (e) => {
         e.preventDefault();
-        const newTask = {task: task, completed: false};
+        const newTask = {task: task, completed: completed};
         setTasks([...tasks, newTask]);
         setTask("");
     }
+    // const strikeOut = (e) => {
+    //     e.preventDefault();
+    //     setTask(strike());
+    // }
     return (
         <div>
             <form onSubmit={ formHandler }>
@@ -20,7 +25,8 @@ const ToDoList = ({tasks, setTasks}) => {
                 {tasks.map( (task, index) => {
                     return (
                         <div>
-                            <li key={index}>{task}</li>
+                            <li key={index}>{task.task}</li>
+                            <input type="checkbox" key={index} />
                             <button>Delete</button>
                         </div>
                     )
