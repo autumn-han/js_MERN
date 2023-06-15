@@ -1,8 +1,9 @@
 import './App.css';
+import CatchEmAll from './components/CatchEmAll';
 
 function App() {
   return (
-    // insert functional component here
+    <CatchEmAll />
   )
 }
 
