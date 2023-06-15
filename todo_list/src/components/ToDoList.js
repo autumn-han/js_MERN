@@ -34,9 +34,13 @@ const ToDoList = ({tasks, setTasks}) => {
             </form>
             <ul>
                 {tasks.map( (task, index) => {
+                    const taskClasses = [];
+                    if(task.completed == true) {
+                        taskClasses.push("strikethru");
+                    }
                     return (
                         <div>
-                            <li key={index}>{task.task}</li>
+                            <li className={taskClasses.join("")} key={index}>{task.task}</li>
                             <input type="checkbox" checked={task.completed} onChange={ (e) => checkTask(e, index)} />
                             <button>Delete</button>
                         </div>
