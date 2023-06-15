@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 const ToDoList = ({tasks, setTasks}) => {
-    console.log("are you reaching me?")
+    console.log(tasks)
     const [task, setTask] = useState("");
     const [completed, setCompleted] = useState(false)
     const formHandler = (e) => {
@@ -10,9 +10,20 @@ const ToDoList = ({tasks, setTasks}) => {
         setTasks([...tasks, newTask]);
         setTask("");
     }
-    const strikeOut = (e) => {
-        e.preventDefault();
-        setCompleted(true);
+    const checkTask = (e, idx) => {
+        const updatedTasks = tasks.map((task, i) => {
+            if (idx === i) {
+                task.completed = !task.completed;
+            }
+            return task;
+        })
+        setTasks(updatedTasks);
+    }
+    const deleteTask = (delIdx) => {
+        const filteredTasks = tasks.filter((task, index) => {
+            return delIdx !== index;
+        });
+        setTasks(filteredTasks);
     }
     return (
         <div>
@@ -26,7 +37,7 @@ const ToDoList = ({tasks, setTasks}) => {
                     return (
                         <div>
                             <li key={index}>{task.task}</li>
-                            <input type="checkbox" key={index} value={task.completed} onChange={strikeOut} />
+                            <input type="checkbox" checked={task.completed} onChange={ (e) => checkTask(e, index)} />
                             <button>Delete</button>
                         </div>
                     )
