@@ -1,16 +1,14 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
-import Integer from './components/Integer';
-import String from './components/String';
+import NumOrString from './components/NumOrString';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/:num" element={<Integer />} />
-        <Route path="/:string" element={<String />} />
+        <Route path="/:thing" element={<NumOrString />} />
       </Routes>
     </BrowserRouter>
   );
