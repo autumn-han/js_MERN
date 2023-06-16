@@ -1,27 +1,22 @@
 import React, {useState} from 'react';
 
-const Tabs = ({tabs, setTabs}) => {
-    const [label, setLabel] = useState("");
-    const [content, setContent] = useState("");
-    const tab = {label: label, content: content};
-    const changeContent = (e, index) => {
-        const tab = {label: label, content: content};
-        setTabs([...tabs, tab]);
-        const filteredTabs = tabs.filter( (tab, kpIdx) => {
-            return kpIdx === index;
-        })
-        setTabs(filteredTabs);
+const Tabs = (props) => {
+    const {allTabs, tabIndex, setTabIndex} = props
+    const currentTab = (index) => {
+        setTabIndex(index);
     }
     return (
         <div>
-            {tabs.map( (tab, index) => {
+            {allTabs.map( (tab, index) => {
                 return (
                     <div key={index}>
-                        <button onClick={ (e) => changeContent(e, index) }>{tab.label}</button>
-                        <textarea>{tab.content}</textarea>
+                        <button onClick={ (e) => currentTab(index) }>{tab.label}</button>
                     </div>
                 )
             })}
+            <div>
+                <p>{allTabs[tabIndex].content}</p>
+            </div>
         </div>
     )
 }
