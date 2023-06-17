@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/:thing" element={<NumOrString />} />
+        <Route path="/:thing/:color/:backColor" element={<NumOrString />} />
       </Routes>
     </BrowserRouter>
   );
