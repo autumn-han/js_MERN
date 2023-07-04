@@ -1,4 +1,4 @@
-const Joke = require("../models/joke/model");
+const Joke = require("../models/joke.model");
 const { jokeData } = req.body;
 
 // retrieve one joke
