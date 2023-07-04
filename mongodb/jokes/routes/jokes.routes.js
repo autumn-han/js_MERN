@@ -1,6 +1,9 @@
 const Joke = require("../controllers/joke.controller");
 
-app.get("/api/jokes", (req, res) => {
-    console.log("Hello to all my jokes");
-    Joke.findAllJokes();
-});
+module.exports = (app) => {
+    app.get("/api/jokes", Joke.findAllJokes);
+    app.post("/api/jokes", Joke.create);
+    app.get("/api/jokes/:_id", Joke.getOneJoke);
+    app.put("/api/jokes/:_id", Joke.updateOne);
+    app.delete("/api/jokes/:_id", Joke.delete);
+};
