@@ -1,11 +1,11 @@
 const Joke = require("../models/joke.model");
-const { jokeData } = req.body;
 
 // retrieve one joke
 module.exports.getOneJoke = (req, res) => {
-    Joke.find({_id: ""})
-    .then(firstJoke => {
-        res.json({ joke: firstJoke })
+    const { params } = req;
+    Joke.find({_id: params._id})
+    .then((oneJoke) => {
+        res.json({ joke: oneJoke })
     })
     .catch((err) => {
         res.json({ message: "Something went wrong", error: err })
@@ -13,28 +13,41 @@ module.exports.getOneJoke = (req, res) => {
 };
 
 // create a new joke
-Joke.create(jokeData)
-    .then(newJoke => {
-        res.json({ newJoke: newJoke })
-    })
-    .catch((err) => {
-        res.json({ message: "Something went wrong", error: err })
-    });
+module.exports.createJoke = (req, res) => {
+    const { body } = req;
+    Joke.create(body)
+        .then((newJoke) => {
+            res.json({ newJoke: newJoke })
+        })
+        .catch((err) => {
+            res.json({ error: err })
+        });
+};
 
 // update a joke
-Joke.updateOne({setup: ""}, {
-    setup: "",
-    $set:{setup:""}
-});
+module.exports.updateOne = (req, res) => {
+    Joke.findOneAndUpdate({ _id: req.params._id }, req.body, {
+        new: true,
+        runValidators: true,
+    })
+        .then((updateJoke) => {
+            res.json({ updateJoke: updateJoke })
+        })
+        .catch((err) => {
+            res.json({ error: err })
+        })
+};
 
 // delete a joke
-Joke.remove({_id: ""})
-    .then(deletedJoke => {
-        res.json({ deletedJoke: deletedJoke })
-    })
-    .catch((err) => {
-        res.json({ message: "Something went wrong", error: err })
-    });
+module.exports.remove = (req, res) => {
+    Joke.deleteOne({ _id: req.params._id })
+        .then((result) => {
+            res.json({ result: result })
+        })
+        .catch((err) => {
+            res.json({ error: err })
+        })
+};
 
 // retrieve all jokes
 module.exports.findAllJokes = (req, res) => {
