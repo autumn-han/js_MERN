@@ -17,6 +17,7 @@ const ProductForm = () => {
     };
     return (
         <form onSubmit={onSubmitHandler}>
+            <h3>Product Manager</h3>
             <p>
                 <label>Title</label>
                 <input type="text" onChange={(e) => setTitle(e.target.value)}/>
