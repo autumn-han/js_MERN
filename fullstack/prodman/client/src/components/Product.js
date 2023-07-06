@@ -16,7 +16,7 @@ const ProductForm = () => {
             .catch(err => console.log("Something went wrong"))
     };
     return (
-        <form>
+        <form onSubmit={onSubmitHandler}>
             <p>
                 <label>Title</label>
                 <input type="text" onChange={(e) => setTitle(e.target.value)}/>
