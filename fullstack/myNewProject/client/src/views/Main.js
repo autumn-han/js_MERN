@@ -4,7 +4,6 @@ import PersonList from '../components/PersonList';
 
 const Main = (props) => {
     const [people, setPeople] = useState([]);
-
     return (
         <div>
             <PersonForm people={people} setPeople={setPeople} />

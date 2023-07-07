@@ -13,6 +13,15 @@ module.exports.createPerson = (req, res) => {
         .catch(err => res.json(err));
 };
 
+module.exports.getPerson = (req, res) => {
+    // the findOne method requires info that Mongoose will use to query the database; here we're using _id
+    // the client's request has an attribute called 'params' - we can name params whatever we want but it MUST MATCH the route
+    // e.g. (_id: req.params.id -> /api/people/:id)
+    Person.findOne({_id:req.params.id})
+        .then(person => res.json(person))
+        .catch(err => res.json(err));
+};
+
 module.exports.getAllPeople = (req, res) => {
     Person.find({})
         .then(persons => {

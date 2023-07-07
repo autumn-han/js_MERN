@@ -1,16 +1,18 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Main from '../views/Main';
+import Detail from './components/Detail'
+import Main from './views/Main';
 
 function App() {
   return (
     <div>
-      <BrowserRoutes>
+      <BrowserRouter>
         <Routes>
-          <Route element={<Main />} path='/home' default />
+          <Route element={<Main />} path='/people/' default />
+          <Route element={<Detail />} path='/people/:id' />
         </Routes>
-      </BrowserRoutes>
+      </BrowserRouter>
     </div>
   );
 }

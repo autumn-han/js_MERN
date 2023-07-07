@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PersonForm = () => {
+const PersonForm = (props) => {
+    // with lifted state, we can hand down the properties of the parent Main.js to the child components PersonForm and PersonList via props
+    const {people, setPeople} = props;
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const onSubmitHandler = (e) => {
@@ -13,6 +15,7 @@ const PersonForm = () => {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
+                setPeople([...people, res.data]);
             })
             .catch(err => console.log(err))
     }
