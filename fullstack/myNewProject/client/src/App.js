@@ -1,7 +1,6 @@
-import './App.css';
 import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Detail from './components/Detail'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import Detail from './components/Detail';
 import Main from './views/Main';
 
 function App() {
@@ -9,12 +8,13 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route element={<Main />} path='/people/' default />
-          <Route element={<Detail />} path='/people/:id' />
+          <Route element={<Navigate to='/people/' />} path='/' />
+          <Route element={<Main/>} path='/people/' />
+          <Route element={<Detail/>} path='/people/:id' />
         </Routes>
       </BrowserRouter>
     </div>
-  );
-}
+  )
+};
 
 export default App;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 // we need to give value to the 'id' parameter written in the Detail.js path - we can import the Link element to do this
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,13 +8,13 @@ const PersonList = (props) => {
     useEffect( () => {
         axios.get('http://localhost:8000/api/people')
         .then((res) => {
-            console.log(res.data);
+            console.log(res.data)
             setPeople(res.data);
         })
         .catch((err) => {
             console.log(err);
-        })
-    }, [])
+        });
+    })
     return (
         <div>
             {
@@ -22,7 +22,7 @@ const PersonList = (props) => {
                     return (
                         <div key={index}>
                             <p>{person.lastName}, {person.firstName}</p>
-                            <Link to={'/people/${person._id}'}>{person.firstName}'s Page</Link>
+                            <Link to={`/people/${person._id}`}>{person.firstName}'s Page</Link>
                         </div>
                     )
                 })
