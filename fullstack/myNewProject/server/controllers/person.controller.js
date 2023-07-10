@@ -46,6 +46,7 @@ module.exports.updatePerson = (req, res) => {
 };
 
 // DELETE
+// delCon = deletion confirmed
 module.exports.deletePerson = (req, res) => {
   Person.deleteOne({ _id: req.params.id })
     .then((delCon) => res.json(delCon))

@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const PersonList = (props) => {
-  const { people, setPeople } = props;
+  const { removeFromDom, people, setPeople } = props;
+  const deletePerson = (personID) => {
+    axios
+      .delete("http://localhost:8000/api/people/" + personID)
+      .then((res) => {
+        removeFromDom(personID);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/people")
@@ -26,6 +34,7 @@ const PersonList = (props) => {
             </p>
             <Link to={`/people/${person._id}`}>{person.firstName}'s Page</Link>
             <Link to={`/people/edit/${person._id}`}>Edit Info</Link>
+            <button onClick={(e) => deletePerson(person._id)}>Delete</button>
           </div>
         );
       })}

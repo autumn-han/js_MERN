@@ -21,6 +21,7 @@ const ProductList = (props) => {
         return (
           <div key={index}>
             <Link to={`/products/${product._id}`}>{product.title}</Link>
+            <Link to={`/products/edit/${product._id}`}>Edit</Link>
           </div>
         );
       })}

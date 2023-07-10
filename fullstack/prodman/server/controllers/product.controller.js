@@ -23,3 +23,12 @@ module.exports.getAllProducts = (req, res) => {
       res.json(err);
     });
 };
+
+module.exports.updateProduct = (req, res) => {
+  Product.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    .then((updateProduct) => {
+      console.log(updatedProduct);
+      res.json(updateProduct);
+    })
+    .catch((err) => res.json(err));
+};
