@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Detail from "./components/Detail";
 import Main from "./views/Main";
+import Update from "./components/Update";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route element={<Navigate to="/people/" />} path="/" />
           <Route element={<Main />} path="/people/" />
           <Route element={<Detail />} path="/people/:id" />
+          <Route element={<Update />} path="/people/edit/:id" />
         </Routes>
       </BrowserRouter>
     </div>
