@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ProductForm from "./ProductForm";
+import DeleteButton from "./DeleteButton";
 
 const ProductUpdate = (props) => {
   const { id } = useParams();
@@ -31,12 +32,18 @@ const ProductUpdate = (props) => {
     <div>
       <h1>Update Product</h1>
       {loaded && (
-        <ProductForm
-          onSubmitProp={updateProduct}
-          initialTitle={product.title}
-          initialPrice={product.price}
-          initialDesc={product.desc}
-        />
+        <>
+          <ProductForm
+            onSubmitProp={updateProduct}
+            initialTitle={product.title}
+            initialPrice={product.price}
+            initialDesc={product.desc}
+          />
+          <DeleteButton
+            productID={product._id}
+            successCallback={() => navigate("/")}
+          />
+        </>
       )}
     </div>
   );
