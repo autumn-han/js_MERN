@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import PersonForm from "../components/PersonForm";
+import PersonForm from "./PersonForm";
+import DeleteButton from "./DeleteButton";
 
 const Update = (props) => {
   // bring in our id from the url and pass it in as part of the axios request to get the needed document and update
@@ -24,6 +25,7 @@ const Update = (props) => {
       .patch("http://localhost:8000/api/people/" + id, personParam)
       .then((res) => {
         console.log(res);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -31,11 +33,17 @@ const Update = (props) => {
     <div>
       <h1>Update a Person</h1>
       {loaded && (
-        <PersonForm
-          onSubmitProp={updatePerson}
-          initialFirstName={person.firstName}
-          initialLastName={person.lastName}
-        />
+        <>
+          <PersonForm
+            onSubmitProp={updatePerson}
+            initialFirstName={person.firstName}
+            initialLastName={person.lastName}
+          />
+          <DeleteButton
+            personID={person._id}
+            successCallback={() => navigate("/")}
+          />
+        </>
       )}
     </div>
   );

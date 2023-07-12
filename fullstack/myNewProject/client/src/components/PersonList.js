@@ -1,18 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // we need to give value to the 'id' parameter written in the Detail.js path - we can import the Link element to do this
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DeleteButton from "./DeleteButton";
 
 const PersonList = (props) => {
-  const { removeFromDom, people, setPeople } = props;
-  const deletePerson = (personID) => {
-    axios
-      .delete("http://localhost:8000/api/people/" + personID)
-      .then((res) => {
-        removeFromDom(personID);
-      })
-      .catch((err) => console.log(err));
-  };
+  const [people, setPeople] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/people")
@@ -24,6 +17,9 @@ const PersonList = (props) => {
         console.log(err);
       });
   });
+  const removeFromDom = (personID) => {
+    setPeople(people.filter((person) => person._id !== personID));
+  };
   return (
     <div>
       {people.map((person, index) => {
@@ -34,7 +30,10 @@ const PersonList = (props) => {
             </p>
             <Link to={`/people/${person._id}`}>{person.firstName}'s Page</Link>
             <Link to={`/people/edit/${person._id}`}>Edit Info</Link>
-            <button onClick={(e) => deletePerson(person._id)}>Delete</button>
+            <DeleteButton
+              personID={person._id}
+              successCallback={() => removeFromDom(person._id)}
+            />
           </div>
         );
       })}

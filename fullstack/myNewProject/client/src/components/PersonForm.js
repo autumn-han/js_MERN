@@ -9,6 +9,8 @@ const PersonForm = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     onSubmitProp({ firstName, lastName });
+    setFirstName("");
+    setLastName("");
   };
   return (
     <form onSubmit={onSubmitHandler}>
