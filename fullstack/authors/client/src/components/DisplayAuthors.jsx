@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const DisplayAuthors = (props) => {
+const DisplayAuthors = () => {
     const [authors, setAuthors] = useState([]);
     const navigate = useNavigate();
+    const removeFromDom = (authorID) => {
+        setAuthors(authors.filter(author => author._id !== authorID));
+    }
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors')
             .then((res) => {
@@ -13,6 +16,13 @@ const DisplayAuthors = (props) => {
             })
             .catch((err) => console.log(err));
     });
+    const deleteAuthor = (authorID) => {
+        axios.delete('http://localhost:8000/api/authors/' + authorID)
+            .then(res => {
+                removeFromDom(authorID);
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <div>
             <h1>Favorite Authors</h1>
@@ -32,7 +42,7 @@ const DisplayAuthors = (props) => {
                             <td>
                                 {/* put in onclick functions here */}
                                 <Link to={`/authors/${author._id}/edit`}><button>Edit</button></Link>
-                                <button>Delete</button>
+                                <button onClick={(e) => {deleteAuthor(author._id)}}>Delete</button>
                             </td>
                         </tr>
                     )
