@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const AuthorForm = (props) => {
     const { initialName, onSubmitProp } = props;
-    const [name, setName] = useState("");
+    const [name, setName] = useState(initialName);
     const navigate = useNavigate();
     const cancelOut = (e) => {
         navigate('/');
@@ -12,16 +12,19 @@ const AuthorForm = (props) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         onSubmitProp({name});
-        setName(initialName);
+        setName("");
     };
     return (
         <div>
             <form onSubmit={onSubmitHandler}>
-                <label>Name:</label>
-                <input type="text" value={name} />
+                <div>
+                    <label>Name:</label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
                 <button onClick={cancelOut}>Cancel</button>
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
+            <Link to={'/'}>Home</Link>
         </div>
     )
 };

@@ -20,7 +20,6 @@ const Update = (props) => {
       .catch((err) => console.log(err));
   }, []);
   const updatePerson = (personParam) => {
-    // note:deleted defaultPrevent and navigate - see if the code runs without but consider putting these back in if need to debug
     axios
       .patch("http://localhost:8000/api/people/" + id, personParam)
       .then((res) => {

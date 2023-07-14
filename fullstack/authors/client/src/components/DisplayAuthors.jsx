@@ -15,7 +15,7 @@ const DisplayAuthors = (props) => {
     return (
         <div>
             <h1>Favorite Authors</h1>
-            {/* Remember to add Link component here */}
+            <Link to={'/authors/new'}>Add a New Author</Link>
             <h3>We have quotes by:</h3>
             <table className="table">
                 <tbody>
@@ -30,7 +30,7 @@ const DisplayAuthors = (props) => {
                             <td>{author.name}</td>
                             <td>
                                 {/* put in onclick functions here */}
-                                <button>Edit</button>
+                                <button><Link to={`/authors/${author._id}/edit`}>Edit</Link></button>
                                 <button>Delete</button>
                             </td>
                         </tr>
