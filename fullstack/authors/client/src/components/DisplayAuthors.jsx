@@ -36,11 +36,9 @@ const DisplayAuthors = () => {
                 </tr>
                 {authors.map((author, index) => {
                     return (
-                        // setting table row to have a key property, check this for troubleshooting
                         <tr key={index}>
                             <td>{author.name}</td>
                             <td>
-                                {/* put in onclick functions here */}
                                 <Link to={`/authors/${author._id}/edit`}><button>Edit</button></Link>
                                 <button onClick={(e) => {deleteAuthor(author._id)}}>Delete</button>
                             </td>

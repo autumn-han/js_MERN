@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const AuthorForm = (props) => {
-    const { initialName, onSubmitProp } = props;
+    const { errors, initialName, onSubmitProp } = props;
     const [name, setName] = useState(initialName);
     const navigate = useNavigate();
     const cancelOut = (e) => {
@@ -17,6 +17,9 @@ const AuthorForm = (props) => {
     return (
         <div>
             <form onSubmit={onSubmitHandler}>
+                {errors.map((err, index) => (
+                    <p key={index}>{err}</p>
+                ))}
                 <div>
                     <label>Name:</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />

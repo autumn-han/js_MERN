@@ -7,6 +7,7 @@ const UpdateAuthor = (props) => {
     const { id } = useParams();
     const [author, setAuthor] = useState({});
     const [loaded, setLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors/' + id)
@@ -15,7 +16,7 @@ const UpdateAuthor = (props) => {
                 setAuthor(res.data);
                 setLoaded(true);
             })
-            .catch(err => console.log("Not able to process GET request"));
+            .catch(err => console.log("Unable to process GET request"));
     }, []);
     const updateAuthor = (authorParam) => {
         axios.patch('http://localhost:8000/api/authors/' + id + '/edit', authorParam)
@@ -23,14 +24,21 @@ const UpdateAuthor = (props) => {
                 console.log(res.data);
                 navigate('/');
             })
-            .catch(err => console.log("Not able to process PATCH request"));
+            .catch(err => {
+                const errorResponse = err.response.data.errors;
+                const errorArr = [];
+                for (const key of Object.keys(errorResponse)) {
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+            });
     };
     return (
         <div>
             <h1>Favorite Authors</h1>
             <h3>Edit Author:</h3>
             {loaded && (
-                <AuthorForm onSubmitProp={updateAuthor} initialName={author.name} />
+                <AuthorForm onSubmitProp={updateAuthor} initialName={author.name} errors={errors} />
             )}
         </div>
     )
