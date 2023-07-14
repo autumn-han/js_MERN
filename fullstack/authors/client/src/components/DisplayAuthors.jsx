@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const DisplayAuthors = (props) => {
     const [authors, setAuthors] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors')
             .then((res) => {
@@ -11,11 +12,11 @@ const DisplayAuthors = (props) => {
                 setAuthors(res.data);
             })
             .catch((err) => console.log(err));
-    })
+    });
     return (
         <div>
             <h1>Favorite Authors</h1>
-            <Link to={'/authors/new'}>Add a New Author</Link>
+            <Link to={`/authors/new`}>Add a New Author</Link>
             <h3>We have quotes by:</h3>
             <table className="table">
                 <tbody>
@@ -30,7 +31,7 @@ const DisplayAuthors = (props) => {
                             <td>{author.name}</td>
                             <td>
                                 {/* put in onclick functions here */}
-                                <button><Link to={`/authors/${author._id}/edit`}>Edit</Link></button>
+                                <Link to={`/authors/${author._id}/edit`}><button>Edit</button></Link>
                                 <button>Delete</button>
                             </td>
                         </tr>

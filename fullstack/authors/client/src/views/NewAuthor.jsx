@@ -7,14 +7,14 @@ const NewAuthor = () => {
     const [authors, setAuthors] = useState([]);
     const navigate = useNavigate();
     const createAuthor = (authorParam) => {
-        axios.post('http://localhost:8000/api/authors')
+        axios.post('http://localhost:8000/api/authors', authorParam)
             .then(res => {
                 console.log(res.data);
                 setAuthors([...authors, res.data]);
                 navigate('/');
             })
-            .catch(err => console.log(err));
-    }
+            .catch(err => console.log("Unable to process POST requeset"));
+    };
     return (
         <div>
             <h1>Favorite Authors</h1>
@@ -24,4 +24,4 @@ const NewAuthor = () => {
     )
 };
 
-export default AuthorForm;
+export default NewAuthor;
