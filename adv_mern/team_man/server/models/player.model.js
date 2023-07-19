@@ -5,6 +5,9 @@ const PlayerSchema = new mongoose.Schema(
     playerName: {
       type: String,
     },
+    prefPos: {
+      type: String,
+    },
     games: [
       {
         game: 1,
