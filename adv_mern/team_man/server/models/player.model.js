@@ -8,22 +8,19 @@ const PlayerSchema = new mongoose.Schema(
     prefPos: {
       type: String,
     },
-    games: [
-      {
-        game: 1,
-        status: "undecided",
-      },
-      {
-        game: 2,
-        status: "undecided",
-      },
-      {
-        game: 3,
-        status: "undecided",
-      },
-    ],
+    status: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
+const GameSchema = new mongoose.Schema({
+  gameNumber: {
+    type: Number,
+  },
+  players: [PlayerSchema],
+});
+
 module.exports = mongoose.model("Player", PlayerSchema);
+module.exports = mongoose.model("Game", GameSchema);
