@@ -4,6 +4,16 @@ import PlayerList from '../components/PlayerList';
 
 const Main = () => {
     const [ players, setPlayers ] = useState([]);
+    const removeFromDom = (playerID) => {
+        setPlayers(players.filter(player => player._id != playerID))
+    };
+    const deletePlayer = (playerID) => {
+        axios.delete('http://localhost:8000/api/players/' + playerID)
+            .then((res) => {
+                removeFromDom(playerID);
+            })
+            .catch((err) => console.log('Unable to process DELETE request'));
+    };
     useEffect(() => {
         axios.get('http://localhost:8000/api/players')
             .then((res) => {
@@ -14,7 +24,7 @@ const Main = () => {
     });
     return (
         <div>
-            <PlayerList players={players} />
+            <PlayerList players={players} btnProp={deletePlayer} />
         </div>
     )
 }

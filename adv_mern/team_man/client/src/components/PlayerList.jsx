@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PlayerList = (props) => {
-    const { players } = props;
+    const { players, btnProp } = props;
     return (
         <div>
             <p><Link>Manage Players</Link> | <Link>Manage Player Status</Link></p>
@@ -22,7 +22,7 @@ const PlayerList = (props) => {
                                 <tr key={index}>
                                     <td>{player.name}</td>
                                     <td>{player.position}</td>
-                                    <td><button>Delete</button></td>
+                                    <td><button onClick={() => btnProp(player._id)}>Delete</button></td>
                                 </tr>
                             )
                         })}
