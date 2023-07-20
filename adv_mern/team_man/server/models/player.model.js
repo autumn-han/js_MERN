@@ -2,25 +2,29 @@ const mongoose = require("mongoose");
 
 const PlayerSchema = new mongoose.Schema(
   {
-    playerName: {
+    name: {
       type: String,
     },
-    prefPos: {
+    position: {
       type: String,
     },
-    status: {
+    gameOneStat: {
       type: String,
+      enum: ["Playing", "Not Playing", "Undecided"],
+      default: "Undecided",
+    },
+    gameTwoStat: {
+      type: String,
+      enum: ["Playing", "Not Playing", "Undecided"],
+      default: "Undecided",
+    },
+    gameThreeStat: {
+      type: String,
+      enum: ["Playing", "Not Playing", "Undecided"],
+      default: "Undecided",
     },
   },
   { timestamps: true }
 );
 
-const GameSchema = new mongoose.Schema({
-  gameNumber: {
-    type: Number,
-  },
-  players: [PlayerSchema],
-});
-
 module.exports = mongoose.model("Player", PlayerSchema);
-module.exports = mongoose.model("Game", GameSchema);

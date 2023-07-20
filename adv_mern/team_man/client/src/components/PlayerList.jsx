@@ -7,7 +7,7 @@ const PlayerList = (props) => {
         <div>
             <p><Link>Manage Players</Link> | <Link>Manage Player Status</Link></p>
             <div>
-                <p><Link>List</Link> | <Link>Add Player</Link></p>
+                <p><Link to={'/players/addplayer'}>Add Player</Link></p>
                 <table>
                     <thead>
                         <tr>
@@ -20,8 +20,8 @@ const PlayerList = (props) => {
                         {players.map((player, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{player.playerName}</td>
-                                    <td>{player.prefPost}</td>
+                                    <td>{player.name}</td>
+                                    <td>{player.position}</td>
                                     <td><button>Delete</button></td>
                                 </tr>
                             )
