@@ -11,7 +11,7 @@ const PlayerForm = (props) => {
     };
     return (
         <div>
-            <p><Link to={'/'}>Manage Players</Link> | <Link>Manage Player Status</Link></p>
+            <p><Link to={'/'}>Manage Players</Link> | <Link to={'/status/game/1'}>Manage Player Status</Link></p>
             <div>
                 <p><Link to={'/'}>List</Link></p>
                 <div>
