@@ -7,7 +7,10 @@ const PlayerStats = (props) => {
         <div>
             <p><Link to={'/'}>Manage Players</Link> | <Link>Manage Player Status</Link></p>
             <div>
-                <h3>Player Stats - {gameNum}</h3>
+                <h1>Player Stats - {gameNum}</h1>
+                <div>
+                    <h3><Link to={'/status/game/1'}>Game 1</Link> | <Link to={'/status/game/2'}>Game 2</Link> | <Link to={'/status/game/3'}>Game 3</Link></h3>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -20,7 +23,8 @@ const PlayerStats = (props) => {
                             return (
                                 <tr key={index}>
                                     <td>{player.name}</td>
-                                    <td><p><button>Playing</button> | <button>Not Playing</button> | <button>Undecided</button></p></td>
+                                    {/* put in conditional rendering statements to change button color */}
+                                    <td value={player.gameOneStat}><p><button>Playing</button> | <button>Not Playing</button> | <button>Undecided</button></p></td>
                                 </tr>
                             )
                         })}

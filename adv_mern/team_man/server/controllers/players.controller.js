@@ -12,6 +12,12 @@ module.exports.addPlayer = (req, res) => {
     .catch((err) => res.json(err));
 };
 
+module.exports.updateOne = (req, res) => {
+  Player.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    .then((updatedPlayer) => res.json(updatedPlayer))
+    .catch((err) => res.json(err));
+};
+
 module.exports.removePlayer = (req, res) => {
   Player.deleteOne({ _id: req.params.id })
     .then((deletedPlayer) => res.json(deletedPlayer))
